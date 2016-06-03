@@ -3,8 +3,8 @@
 //  BlocksKit
 //
 
-#import "UIGestureRecognizer+BlocksKit.h"
 #import "UIView+BlocksKit.h"
+#import "UIGestureRecognizer+BlocksKit.h"
 
 @implementation UIView (BlocksKit)
 
@@ -16,14 +16,20 @@
 		if (state == UIGestureRecognizerStateRecognized) block();
 	}];
 	
+#if !TARGET_OS_TV
 	gesture.numberOfTouchesRequired = numberOfTouches;
+#endif
 	gesture.numberOfTapsRequired = numberOfTaps;
 
 	[self.gestureRecognizers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		if (![obj isKindOfClass:[UITapGestureRecognizer class]]) return;
 
 		UITapGestureRecognizer *tap = obj;
+#if !TARGET_OS_TV
 		BOOL rightTouches = (tap.numberOfTouchesRequired == numberOfTouches);
+#else
+        BOOL rightTouches = (1 == numberOfTouches);
+#endif
 		BOOL rightTaps = (tap.numberOfTapsRequired == numberOfTaps);
 		if (rightTouches && rightTaps) {
 			[gesture requireGestureRecognizerToFail:tap];

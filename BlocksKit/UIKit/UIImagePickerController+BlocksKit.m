@@ -3,9 +3,12 @@
 //  BlocksKit
 //
 
-#import "A2DynamicDelegate.h"
-#import "NSObject+A2BlockDelegate.h"
+#if !TARGET_OS_TV
+
 #import "UIImagePickerController+BlocksKit.h"
+#import "A2DynamicDelegate.h"
+#import "NSObject+A2DynamicDelegate.h"
+#import "NSObject+A2BlockDelegate.h"
 
 #pragma mark Custom delegate
 
@@ -52,3 +55,5 @@
 }
 
 @end
+
+#endif
