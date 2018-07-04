@@ -4,9 +4,10 @@
 //
 
 #import "NSObject+A2BlockDelegate.h"
-@import ObjectiveC.message;
 #import "A2DynamicDelegate.h"
 #import "NSObject+A2DynamicDelegate.h"
+
+#import <objc/message.h>
 
 #pragma mark - Declarations and macros
 

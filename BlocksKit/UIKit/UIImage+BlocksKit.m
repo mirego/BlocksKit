@@ -3,9 +3,9 @@
 //  BlocksKit
 //
 
-#if !TARGET_OS_TV
-
 #import "UIImage+BlocksKit.h"
+
+#if !TARGET_OS_TV
 
 @implementation UIImage (BKPhotoLibraryExport)
 

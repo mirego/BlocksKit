@@ -3,9 +3,10 @@
 //  BlocksKit
 //
 
+#import "UIActionSheet+BlocksKit.h"
+
 #if !TARGET_OS_TV
 
-#import "UIActionSheet+BlocksKit.h"
 #import "A2DynamicDelegate.h"
 #import "NSObject+A2DynamicDelegate.h"
 #import "NSObject+A2BlockDelegate.h"

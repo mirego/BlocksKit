@@ -5,10 +5,11 @@
 //  Contributed by Yas Kuraishi.
 //
 
+#import <UIKit/UIKit.h>
+
 #if !TARGET_OS_TV
 
 #import "BKDefines.h"
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

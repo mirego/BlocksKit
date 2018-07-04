@@ -3,9 +3,10 @@
 //  BlocksKit
 //
 
+#import "UIWebView+BlocksKit.h"
+
 #if !TARGET_OS_TV
 
-#import "UIWebView+BlocksKit.h"
 #import "A2DynamicDelegate.h"
 #import "NSObject+A2DynamicDelegate.h"
 #import "NSObject+A2BlockDelegate.h"

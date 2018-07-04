@@ -4,7 +4,8 @@
 //
 
 #import "UIBarButtonItem+BlocksKit.h"
-@import ObjectiveC.runtime;
+
+#import <objc/runtime.h>
 
 static const void *BKBarButtonItemBlockKey = &BKBarButtonItemBlockKey;
 

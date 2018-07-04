@@ -4,10 +4,11 @@
 //
 
 #import "NSURLConnection+BlocksKit.h"
-@import ObjectiveC.runtime;
 #import "A2DynamicDelegate.h"
 #import "NSObject+A2DynamicDelegate.h"
 #import "NSObject+A2BlockDelegate.h"
+
+#import <objc/runtime.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

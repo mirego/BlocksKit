@@ -3,9 +3,10 @@
 //  BlocksKit
 //
 
+#import <UIKit/UIKit.h>
+
 #if !TARGET_OS_TV
 
-#import <UIKit/UIKit.h>
 #import "BKDefines.h"
 
 /** UIAlertView without delegates!

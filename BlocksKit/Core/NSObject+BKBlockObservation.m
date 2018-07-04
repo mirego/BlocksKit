@@ -4,12 +4,13 @@
 //
 
 #import "NSObject+BKBlockObservation.h"
-@import ObjectiveC.runtime;
-@import ObjectiveC.message;
 #import "NSArray+BlocksKit.h"
 #import "NSDictionary+BlocksKit.h"
 #import "NSSet+BlocksKit.h"
 #import "NSObject+BKAssociatedObjects.h"
+
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 typedef NS_ENUM(int, BKObserverContext) {
 	BKObserverContextKey,
