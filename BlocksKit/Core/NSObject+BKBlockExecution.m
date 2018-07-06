@@ -5,22 +5,8 @@
 
 #import "NSObject+BKBlockExecution.h"
 
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1010)
-#define DISPATCH_CANCELLATION_SUPPORTED 1
-#else
-#define DISPATCH_CANCELLATION_SUPPORTED 1
-#endif
-
 NS_INLINE dispatch_time_t BKTimeDelay(NSTimeInterval t) {
     return dispatch_time(DISPATCH_TIME_NOW, (uint64_t)(NSEC_PER_SEC * t));
-}
-
-NS_INLINE BOOL BKSupportsDispatchCancellation(void) {
-#if DISPATCH_CANCELLATION_SUPPORTED
-    return (&dispatch_block_cancel != NULL);
-#else
-    return NO;
-#endif
 }
 
 NS_INLINE dispatch_queue_t BKGetBackgroundQueue(void) {
@@ -30,13 +16,11 @@ NS_INLINE dispatch_queue_t BKGetBackgroundQueue(void) {
 static id <NSObject, NSCopying> BKDispatchCancellableBlock(dispatch_queue_t queue, NSTimeInterval delay, void(^block)(void)) {
     dispatch_time_t time = BKTimeDelay(delay);
     
-#if DISPATCH_CANCELLATION_SUPPORTED
-    if (BKSupportsDispatchCancellation()) {
+    if (@available(iOS 8.0, macOS 10.10, tvOS 9.0, watchOS 2.0, *)) {
         dispatch_block_t ret = dispatch_block_create(0, block);
         dispatch_after(time, queue, ret);
         return ret;
     }
-#endif
     
     __block BOOL cancelled = NO;
     void (^wrapper)(BOOL) = ^(BOOL cancel) {
@@ -96,12 +80,10 @@ static id <NSObject, NSCopying> BKDispatchCancellableBlock(dispatch_queue_t queu
 {
     NSParameterAssert(block != nil);
     
-#if DISPATCH_CANCELLATION_SUPPORTED
-    if (BKSupportsDispatchCancellation()) {
+    if (@available(iOS 8.0, macOS 10.10, tvOS 9.0, watchOS 2.0, *)) {
         dispatch_block_cancel((dispatch_block_t)block);
         return;
     }
-#endif
     
     void (^wrapper)(BOOL) = (void(^)(BOOL))block;
     wrapper(YES);
